@@ -12,8 +12,8 @@ public class Gmail extends Email {
     //Trash: Stores mails. Each mail has date (Date), sender (String), message (String)
 
     private int inboxCapacity;
-    private Queue<Email> inbox;
-    private Queue<Email> trash;
+    private Queue<Mail> inbox;
+    private Queue<Mail> trash;
     public Gmail(String emailId, int inboxCapacity) {
         super(emailId);
         this.inboxCapacity = inboxCapacity;
@@ -29,17 +29,17 @@ public class Gmail extends Email {
         if(inbox.size() == inboxCapacity){
             trash.offer(inbox.poll());
         }
-        inbox.offer(new Email(date,sender,message));
+        inbox.offer(new Mail(date,sender,message));
     }
 
     public void deleteMail(String message){
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
-        for (Email email : inbox) {
+        for (Mail email : inbox) {
             // If the message of the current mail matches the given message,
             // remove the current mail from the inbox and add it to the trash
             if (email.getMessage().equals(message)) {
-                trash.offer(new Email(email.getDate(),email.getSender(),email.getMessage()));
+                trash.offer(new Mail(email.getDate(),email.getSender(),email.getMessage()));
                 inbox.remove(email);
                 break;
             }
@@ -62,14 +62,14 @@ public class Gmail extends Email {
         if(inbox.isEmpty()){
             return null;
         }
-        return ((LinkedList<Email>) inbox).getLast().getMessage();
+        return ((LinkedList<Mail>) inbox).getLast().getMessage();
     }
 
     public int findMailsBetweenDates(Date start, Date end){
         //find number of mails in the inbox which are received between given dates
         //It is guaranteed that start date <= end date
         int count = 0;
-        for(Email email : inbox){
+        for(Mail email : inbox){
             if(email.getDate().compareTo(start)>=0 && email.getDate().compareTo(end) <=0){
                 count++;
             }

@@ -7,42 +7,10 @@ public class Email {
     private String emailId;
     private String password;
 
-    private Date date;
-
-    private String sender;
-
-    private String message;
-
     public Email(String emailId){
         this.emailId = emailId;
         this.password = "Accio@123";
     }
-
-    public Email(Date date,String sender,String message){
-        this.date=date;
-        this.sender = sender;
-        this.message =message;
-    }
-
-    public void setDate(Date date){
-        this.date = date;
-    }
-    public Date getDate(){
-        return date;
-    }
-    public void setSender(String sender){
-        this.sender = sender;
-    }
-    public String getSender(){
-        return sender;
-    }
-    public void setMessage(String message){
-        this.message = message;
-    }
-    public String getMessage(){
-        return message;
-    }
-
 
 
     public String getEmailId() {
