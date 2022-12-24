@@ -1,6 +1,6 @@
 package com.driver;
 
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -11,9 +11,9 @@ public class Gmail extends Email {
     //Inbox: Stores mails. Each mail has date (Date), sender (String), message (String). It is guaranteed that message is distinct for all mails.
     //Trash: Stores mails. Each mail has date (Date), sender (String), message (String)
 
-    public int inboxCapacity;
-    public Queue<Email> inbox;
-    public Queue<Email> trash;
+    private int inboxCapacity;
+    private Queue<Email> inbox;
+    private Queue<Email> trash;
     public Gmail(String emailId, int inboxCapacity) {
         super(emailId);
         this.inboxCapacity = inboxCapacity;
