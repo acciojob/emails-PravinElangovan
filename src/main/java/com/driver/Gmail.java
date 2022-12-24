@@ -2,6 +2,7 @@ package com.driver;
 
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -35,17 +36,21 @@ public class Gmail extends Email {
     public void deleteMail(String message){
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
-        for (Email email : inbox) {
+        Iterator<Email> iterator = inbox.iterator();
+        while (((Iterator<?>) iterator).hasNext()) {
+            Email email = iterator.next();
             // If the message of the current mail matches the given message,
             // remove the current mail from the inbox and add it to the trash
             if (email.getMessage().equals(message)) {
                 trash.offer(new Email(email.getDate(),email.getSender(),email.getMessage()));
-                inbox.remove(email);
+                iterator.remove();
                 break;
             }
         }
-
     }
+
+
+
 
     public String findLatestMessage(){
         // If the inbox is empty, return null
