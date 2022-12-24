@@ -70,7 +70,7 @@ public class Gmail extends Email {
         //It is guaranteed that start date <= end date
         int count = 0;
         for(Email email : inbox){
-            if(email.getDate().compareTo(start)>0 && email.getDate().compareTo(end) <0){
+            if(email.getDate().compareTo(start)>=0 && email.getDate().compareTo(end) <=0){
                 count++;
             }
         }
